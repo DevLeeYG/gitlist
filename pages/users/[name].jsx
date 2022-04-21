@@ -11,6 +11,7 @@ const style = css`
 `;
 
 const name = ({ user, repos }) => {
+  console.log(user)
   return (
     <div className="user-contents-wrapper">
       <Profile user={user} />
@@ -27,9 +28,7 @@ export const getServerSideProps = async ({ query }) => {
     let repos;
 
     const userRes = await fetch(`https://api.github.com/users/${name}`, {
-      headers: {
-        Authorization: "token 714e48da28db7533dd9dafe6f4f040b142d30560",
-      },
+     
     });
     if (userRes.status === 200) {
       user = await userRes.json();
@@ -38,11 +37,7 @@ export const getServerSideProps = async ({ query }) => {
     }
     const repoRes = await fetch(
       `https://api.github.com/users/${name}/repos?sort=updated&page=${page}&per_page=10`,
-      {
-        headers: {
-          Authorization: "token 714e48da28db7533dd9dafe6f4f040b142d30560",
-        },
-      }
+     
     );
     if (repoRes.status === 200) {
       repos = await repoRes.json();

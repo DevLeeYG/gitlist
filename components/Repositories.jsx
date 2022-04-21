@@ -89,6 +89,8 @@ a{
 
 
 const Repositories = ({user,repos}) => {
+
+    console.log('123123',user)
    
     const router = useRouter();
     const {page ="1"} = router.query;
